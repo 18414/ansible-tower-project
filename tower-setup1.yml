@@ -4,8 +4,8 @@
   become: true
   hosts: localhost
   vars_files:
-    - /home/ansible/ansible/playbooks/keys.yml
-    - /home/ansible/ansible/playbooks/tower_ec2_var.yml
+    - keys.yml
+    - tower_ec2_var.yml
 
   tasks: 
     - name: Launch ec2 instance
@@ -32,7 +32,7 @@
 
     - name: Add new created instance to inventory
       local_action: lineinfile
-                    dest=/etc/ansible/hosts
+                    dest=./inventories/hosts
                     regexp={{ item.public_ip }}
                     insertafter="[tower]"
                     line={{ item.public_ip }}
