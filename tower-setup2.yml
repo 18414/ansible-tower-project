@@ -71,7 +71,7 @@
    # - name: show them
    #   debug: var=ansible_facts.packages
 
-    - name: Ansible test result
+    - name: Install Ansible if not installed base on result
       yum:
         name: ansible
         state: latest
@@ -79,18 +79,22 @@
 
 
     - name: Start Tower installation
-      script: /home/ansible/setup.sh #ansible-tower-setup-bundle-3.5.3-1.el{{ ansible_distribution_major_version }}/setup.sh
+      shell: sh /opt/ansible-tower-setup-bundle-3.5.3-1.el7/setup.sh #ansible-tower-setup-bundle-3.5.3-1.el{{ ansible_distribution_major_version }}/setup.sh
       tags: t
 
-    - name: Tower installation status
+    - name: Checking Tower URL status 
       uri:
-        url: https://{{ item }}
+        url: https://{{ ansible_default_ipv4.address }}
         return_content: yes
         status_code: 200
-        register: url_stat
+        validate_certs: no
+      register: url_stat
       tags: link
 
-    - name: URL status # If it returns status code 200
-      debug: msg={{ url_stat }}
+    - name: URL status 200 is ok # If it returns status code 200
+      debug: msg={{ url_stat.status }}
+      tags: final
+
+    
 
 
