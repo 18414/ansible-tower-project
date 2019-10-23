@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ansible-playbook tower-setup.yml
-ansible-playbook tower-install2.yml
+ansible-playbook -i inventories/hosts tower-setup1.yml 
+ansible-playbook -i inventories/hosts tower-setup2.yml
 

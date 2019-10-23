@@ -4,8 +4,8 @@
   become: true
   hosts: localhost
   vars_files:
-    - keys.yml
-    - tower_ec2_var.yml
+    - vars/keys.yml
+    - vars/tower_ec2_var.yml
 
   tasks: 
     - name: Launch ec2 instance
