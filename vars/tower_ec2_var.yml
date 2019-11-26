@@ -8,5 +8,5 @@ BASE_AMI: ami-0015b9ef68c77328d # CentOS_7.5_Private - community edition
 AWS_ZONE: us-east-1a
 GRP_NAME: ASGSG
 KEY_NAME: mysg-nvg
-INSTANCE: t2.medium
+INSTANCE: t2.micro
 #AWS_REGION: us-east-1
